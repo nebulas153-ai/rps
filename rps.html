@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+
+  <style>
+    .a1 {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: blue solid 2px;
+      cursor: pointer;
+      padding: 0;
+    }
+    
+
+    .a2 {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: red solid 2px;
+      cursor: pointer;
+      padding: 0;
+    }
+      
+
+    .a3 {
+     width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: yellow solid 2px;
+      cursor: pointer;
+      padding: 0;
+    }
+    .rg1 {
+      background-color: orange;
+      color: white;
+      border: 2px black solid;
+      border-radius: 10px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div style="background-color: lightblue; padding: 20px;">
+    <h1 style="text-align: center;">Shashwat Mishra</h1>
+  </div>
+
+  <div style="text-align: center; background-color: lightgreen; padding: 20px;">
+    <h2 style="text-align: center;">Rock Paper Scissors Game</h2>
+
+    <button  onclick="playGame('rock')" class="a1"; >
+      <img
+        src="https://i.ytimg.com/vi/Mw3jK9YwOxk/hq720.jpg"
+        width="100" height="100">
+    </button>
+
+    <button onclick="playGame('paper')" class="a2" >
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Toiletpapier_%28Gobran111%29.jpg"
+        width="100" height="100">
+    </button>
+
+    <button  onclick="playGame('scissors')" class="a3">
+      <img src="https://m.media-amazon.com/images/I/61l1uqUqXxS._SX425_.jpg"
+        width="100" height="100">
+    </button>
+  </div>
+  
+  <div style="text-align: center; background-color: lightyellow; padding: 20px;">
+    <p id="yes">Result:</p>
+    <p id="yes2">Score:</p>
+  </div>
+
+  <script>
+
+    alert("Welcome to my website!");
+
+    let playerScore = 0;
+    let computerScore = 0;
+
+    function playGame(playerChoice) {
+
+      const choices = ["rock", "paper", "scissors"];
+
+      const computerChoice =
+        choices[Math.floor(Math.random() * choices.length)];
+
+      let result;
+
+      if (playerChoice === computerChoice) {
+
+        result = "It's a tie!";
+
+      } else if (
+        (playerChoice === "rock" && computerChoice === "scissors") ||
+        (playerChoice === "paper" && computerChoice === "rock") ||
+        (playerChoice === "scissors" && computerChoice === "paper")
+      ) {
+
+        result = "You win!";
+        playerScore++;
+
+      } else {
+
+        result = "You lose!";
+        computerScore++;
+      }
+
+      updateScreen(computerChoice, result);
+    }
+
+    function updateScreen(computerChoice, result) {
+
+      document.getElementById("yes").innerHTML =
+        "Result: Computer chose - " +
+        computerChoice +
+        "<br>" +
+        result;
+
+      document.getElementById("yes2").innerHTML =
+        "Score: Computer - " +
+        computerScore +
+        " | Player - " +
+        playerScore;
+    }
+    function resetGame() {
+      playerScore = 0;
+      computerScore = 0;
+      document.getElementById("yes").innerHTML = "Result:";
+      document.getElementById("yes2").innerHTML = "Score: Computer - 0 | Player - 0";
+
+    }
+
+  </script>
+  <div style="text-align: center;">
+   <button  onclick="resetGame()" class="rg1">Reset Game</button>
+  </div>
+   
+  <div style="background-color: white; padding: 20px; margin-top: 20px;">
+  <a 
+      style="background-color: purple;
+      color: white;
+      border: 2px black solid;
+      border-radius: 10px;
+      padding: 10px ;
+      cursor: pointer;"
+
+  >
+    Cart Game Coming Soon!
+  </a>
+   </div>
+
+</body>
+</html>
