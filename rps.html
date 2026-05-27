@@ -1,80 +1,203 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
 
   <style>
-    .a1 {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: blue solid 2px;
-      cursor: pointer;
-      padding: 0;
-    }
-    
 
-    .a2 {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: red solid 2px;
-      cursor: pointer;
-      padding: 0;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      transition:0.3s;
     }
-      
 
-    .a3 {
-     width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: yellow solid 2px;
-      cursor: pointer;
-      padding: 0;
+    body{
+      font-family:Arial, sans-serif;
+      background:linear-gradient(to right,#0f172a,#1e293b);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      color:white;
+      padding:20px;
     }
-    .rg1 {
-      background-color: orange;
-      color: white;
-      border: 2px black solid;
-      border-radius: 10px;
-      padding: 10px 20px;
-      cursor: pointer;
+
+    .header{
+      width:100%;
+      max-width:900px;
+      background:linear-gradient(90deg,#06b6d4,#3b82f6);
+      padding:20px;
+      border-radius:20px;
+      text-align:center;
+      box-shadow:0 4px 20px rgba(0,0,0,0.4);
+      margin-bottom:20px;
     }
+
+    .header h1{
+      font-size:40px;
+      letter-spacing:2px;
+    }
+
+    .game-box{
+      width:100%;
+      max-width:900px;
+      text-align:center;
+      background:rgba(255,255,255,0.1);
+      backdrop-filter:blur(10px);
+      padding:30px;
+      border-radius:20px;
+      border:1px solid rgba(255,255,255,0.2);
+      box-shadow:0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .game-box h2{
+      margin-bottom:25px;
+      font-size:32px;
+    }
+
+    .choices{
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      flex-wrap:wrap;
+    }
+
+    .choice-btn{
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      overflow:hidden;
+      border:none;
+      cursor:pointer;
+      box-shadow:0 4px 15px rgba(0,0,0,0.5);
+    }
+
+    .choice-btn:hover{
+      transform:scale(1.1);
+    }
+
+    .rock{
+      border:4px solid #3b82f6;
+    }
+
+    .paper{
+      border:4px solid #ef4444;
+    }
+
+    .scissors{
+      border:4px solid #facc15;
+    }
+
+    .choice-btn img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .result-box{
+      margin-top:30px;
+      text-align:center;
+    }
+
+    #yes,
+    #yes2{
+      font-size:24px;
+      margin-top:10px;
+      font-weight:bold;
+    }
+
+    .reset-btn{
+      margin-top:25px;
+      background:linear-gradient(90deg,#f59e0b,#ef4444);
+      color:white;
+      border:none;
+      border-radius:12px;
+      padding:14px 30px;
+      cursor:pointer;
+      font-size:18px;
+      font-weight:bold;
+      box-shadow:0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    .reset-btn:hover{
+      transform:scale(1.05);
+    }
+
+    .coming-soon{
+      margin-top:30px;
+      background:linear-gradient(90deg,#7e22ce,#9333ea);
+      padding:15px 25px;
+      border-radius:12px;
+      font-weight:bold;
+      box-shadow:0 4px 15px rgba(0,0,0,0.4);
+    }
+
+    @media(max-width:600px){
+
+      .header h1{
+        font-size:28px;
+      }
+
+      .game-box h2{
+        font-size:24px;
+      }
+
+      .choice-btn{
+        width:90px;
+        height:90px;
+      }
+
+      #yes,
+      #yes2{
+        font-size:18px;
+      }
+    }
+
   </style>
 </head>
 
 <body>
 
-  <div style="background-color: lightblue; padding: 20px;">
-    <h1 style="text-align: center;">Shashwat Mishra</h1>
+  <div class="header">
+    <h1>Shashwat Mishra</h1>
   </div>
 
-  <div style="text-align: center; background-color: lightgreen; padding: 20px;">
-    <h2 style="text-align: center;">Rock Paper Scissors Game</h2>
+  <div class="game-box">
 
-    <button  onclick="playGame('rock')" class="a1"; >
-      <img
-        src="https://i.ytimg.com/vi/Mw3jK9YwOxk/hq720.jpg"
-        width="100" height="100">
-    </button>
+    <h2>Rock Paper Scissors Game</h2>
 
-    <button onclick="playGame('paper')" class="a2" >
-      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Toiletpapier_%28Gobran111%29.jpg"
-        width="100" height="100">
-    </button>
+    <div class="choices">
 
-    <button  onclick="playGame('scissors')" class="a3">
-      <img src="https://m.media-amazon.com/images/I/61l1uqUqXxS._SX425_.jpg"
-        width="100" height="100">
-    </button>
+      <button onclick="playGame('rock')" class="choice-btn rock">
+        <img src="https://i.ytimg.com/vi/Mw3jK9YwOxk/hq720.jpg">
+      </button>
+
+      <button onclick="playGame('paper')" class="choice-btn paper">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Toiletpapier_%28Gobran111%29.jpg">
+      </button>
+
+      <button onclick="playGame('scissors')" class="choice-btn scissors">
+        <img src="https://m.media-amazon.com/images/I/61l1uqUqXxS._SX425_.jpg">
+      </button>
+
+    </div>
+
+    <div class="result-box">
+      <p id="yes">Result:</p>
+      <p id="yes2">Score: Computer - 0 | Player - 0</p>
+
+      <button onclick="resetGame()" class="reset-btn">
+        Reset Game
+      </button>
+    </div>
+
   </div>
-  
-  <div style="text-align: center; background-color: lightyellow; padding: 20px;">
-    <p id="yes">Result:</p>
-    <p id="yes2">Score:</p>
+
+  <div class="coming-soon">
+    Spend Elon Musk's Money — Coming Soon!
   </div>
 
   <script>
@@ -84,41 +207,49 @@
     let playerScore = 0;
     let computerScore = 0;
 
-    function playGame(playerChoice) {
+    function playGame(playerChoice){
 
-      const choices = ["rock", "paper", "scissors"];
+      const choices = ["rock","paper","scissors"];
 
       const computerChoice =
         choices[Math.floor(Math.random() * choices.length)];
 
       let result;
 
-      if (playerChoice === computerChoice) {
+      if(playerChoice === computerChoice){
 
-        result = "It's a tie!";
+        result = "It's a Tie 🤝";
 
-      } else if (
+      }
+
+      else if(
+
         (playerChoice === "rock" && computerChoice === "scissors") ||
         (playerChoice === "paper" && computerChoice === "rock") ||
         (playerChoice === "scissors" && computerChoice === "paper")
-      ) {
 
-        result = "You win!";
+      ){
+
+        result = "You Win 🎉";
         playerScore++;
 
-      } else {
-
-        result = "You lose!";
-        computerScore++;
       }
 
-      updateScreen(computerChoice, result);
+      else{
+
+        result = "You Lose 😢";
+        computerScore++;
+
+      }
+
+      updateScreen(computerChoice,result);
+
     }
 
-    function updateScreen(computerChoice, result) {
+    function updateScreen(computerChoice,result){
 
       document.getElementById("yes").innerHTML =
-        "Result: Computer chose - " +
+        "Computer chose: " +
         computerChoice +
         "<br>" +
         result;
@@ -128,33 +259,23 @@
         computerScore +
         " | Player - " +
         playerScore;
+
     }
-    function resetGame() {
+
+    function resetGame(){
+
       playerScore = 0;
       computerScore = 0;
-      document.getElementById("yes").innerHTML = "Result:";
-      document.getElementById("yes2").innerHTML = "Score: Computer - 0 | Player - 0";
+
+      document.getElementById("yes").innerHTML =
+        "Result:";
+
+      document.getElementById("yes2").innerHTML =
+        "Score: Computer - 0 | Player - 0";
 
     }
 
   </script>
-  <div style="text-align: center;">
-   <button  onclick="resetGame()" class="rg1">Reset Game</button>
-  </div>
-   
-  <div style="background-color: white; padding: 20px; margin-top: 20px;">
-  <a 
-      style="background-color: purple;
-      color: white;
-      border: 2px black solid;
-      border-radius: 10px;
-      padding: 10px ;
-      cursor: pointer;"
-
-  >
-    Cart Game Coming Soon!
-  </a>
-   </div>
 
 </body>
 </html>
