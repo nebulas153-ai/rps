@@ -20,6 +20,7 @@
       margin-bottom: 20px;
       margin-top: 20px;
       margin-left: 20px;
+      width: 100%;
     }
    .ll1, .ll2, .ll3, .ll4, .ll5, .ll6 {
       display: flex;
@@ -41,6 +42,7 @@
       cursor: pointer;
       margin-right: 200px;
       box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
+      margin-bottom: 20px;
     }
    
   .p1{
@@ -55,9 +57,10 @@
        box-shadow: 0 0 10px rgb(26, 239, 23);
      }
   .lo1, .lo2, .lo3, .lo4, .lo5, .lo6, .lo7, .lo8, .lo9, .lo10, .lo11, .lo12, .lo13, .lo14, .lo15, .lo16 , .lo17, .lo18{
-       width: 202px;
+       width: 150px;
        height: 150px;
        border-radius: 10px;
        margin-right: 175px;
+       margin-bottom: 20px;
        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
      }
