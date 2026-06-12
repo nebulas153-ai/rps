@@ -10,6 +10,11 @@
   <body>
     <div class="container">
       <p class="p1">Spend Elon Musk Money</p>
+      <div class="answer">
+        <p type="text" id="display" class="display">
+          1000000000000
+        </p>
+    </div>
       
      <div class="l1">
        <img  class="lo1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdnUTpNK6ZYC45PiM7vIQDQRdnfZq91qxlqA&s">
@@ -18,9 +23,9 @@
      </div>
 
      <div class="ll1">
-       <button class="b1" onClick="1199">Add to Cart</button>
-       <button class="b2" onClick="6.72">Add to Cart</button>
-       <button class="b3" onClick="40000">Add to Cart</button>
+       <button class="b" onClick="press('1199')">Add to Cart</button>
+       <button class="b" onClick="press('6.72')">Add to Cart</button>
+       <button class="b" onClick="press('40000')">Add to Cart</button>
      </div>  
       
      
@@ -31,9 +36,9 @@
      </div>
 
       <div class="ll2">
-       <button class="b4" onClick="2000000">Add to Cart</button>
-       <button class="b5" onClick="1500000000 ">Add to Cart</button>
-       <button class="b6" onClick="500000">Add to Cart</button>
+       <button class="b" onClick="press('2000000')">Add to Cart</button>
+       <button class="b" onClick="press('1500000000 ')">Add to Cart</button>
+       <button class="b" onClick="press('500000')">Add to Cart</button>
       </div>
      
      <div class="l3">
@@ -43,9 +48,9 @@
      </div>
 
      <div class="ll3">
-       <button class="b7" onClick="2500000">Add to Cart</button>
-       <button class="b8" onClick="20000">Add to Cart</button>
-       <button class="b9" onClick="350000000">Add to Cart</button>
+       <button class="b" onClick="press('2500000')">Add to Cart</button>
+       <button class="b" onClick="press('20000')">Add to Cart</button>
+       <button class="b" onClick="press('350000000')">Add to Cart</button>
      </div>
      
      
@@ -56,9 +61,9 @@
      </div>
 
      <div class="ll4">
-       <button class="b10" onClick="20000000">Add to Cart</button>
-       <button class="b11" onClick="50000000">Add to Cart</button>
-       <button class="b12" onClick="3000000">Add to Cart</button>
+       <button class="b" onClick="press('20000000')">Add to Cart</button>
+       <button class="b" onClick="press('50000000')">Add to Cart</button>
+       <button class="b" onClick="press('3000000')">Add to Cart</button>
      </div>
     
      <div class="l5">
@@ -68,9 +73,9 @@
      </div>
 
      <div class="ll5">
-       <button class="b13" onClick="345000000000">Add to Cart</button>
-       <button class="b14" onClick="150000000000">Add to Cart</button>
-       <button class="b15" onClick="2100000000">Add to Cart</button>
+       <button class="b" onClick="press('345000000000')">Add to Cart</button>
+       <button class="b" onClick="press('150000000000')">Add to Cart</button>
+       <button class="b" onClick="press('2100000000')">Add to Cart</button>
      </div>
 
      <div class="l6">
@@ -80,15 +85,46 @@
      </div>
 
      <div class="ll6">
-       <button class="b16" onClick="900000000000">Add to Cart</button>
-       <button class="b17" onClick="359000000000">Add to Cart</button>
-       <button class="b18" onClick="950000000000">Add to Cart</button>
+       <button class="b" onClick="press('900000000000')">Add to Cart</button>
+       <button class="b" onClick="press('359000000000')">Add to Cart</button>
+       <button class="b" onClick="press('950000000000')">Add to Cart</button>
      </div>
+    </div>
+    <div class="bill">
+      <p class="p2">Your Bill</p>
+      <p class="p3">Total Amount:</p>
+      <p type="text" id="total" class="total">0</p>
+    </div>
+    <div class="rpsdiv">
+    <a class="rps" href="rps.html">
+      Rock Paper Scissor
+    </a>
     </div>
 
 
 
-    <script type="text/babel">
+    <script >
+      let expression = '1000000000000';
+      function press(num){
+        expression = expression - num;
+        document.getElementById("display").innerText = expression;
+        document.getElementById("display").style.color =  "green";
+        if(expression <= 500000000){
+          alert("Elon Musk Bankrupt");
+          document.getElementById("display").innerText = expression;
+          document.getElementById("display").style.color = "red";
+        }
+
+        bill(num);
+      }
+      let total = 0;
+
+      function bill(num) {  
+       total += Number(num);
+       document.getElementById("total").innerText = total;
+      }
+
+       
     </script>
 
   </body>
