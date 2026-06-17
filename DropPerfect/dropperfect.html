@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Drop Perfect</title>
+   <link rel="stylesheet" href="dropstyle.css"> 
+   
+ </head>
+ <body>
+    <div id="box">Hello</div>
+    <div class="con2">
+    <button onclick="moveTo()" class="b1">Drop</button>
+    </div>
+    <script >
+        let position = 0;
+        function moveTo() {
+            position += 5;
+            const box = document.getElementById('box');
+            box.style.display = 'block';
+            box.style.top = position + 'px';
+             if (position >= 200) {
+                clearInterval(interval);
+                alert('Perfect Drop!');
+            }
+            
+            
+        }
+
+    </script>
+ </body>
+</html>

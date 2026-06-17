@@ -1,0 +1,17 @@
+#box{
+    width: 100px;
+    height: 25px;
+    position: relative;
+   
+}
+body{
+    background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 100%);
+    padding: 0 ;
+    margin: 0;
+    height: 100vh;          
+
+}
+.con2{
+    justify-content: center;
+    display: flex;
+}
