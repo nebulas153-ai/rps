@@ -3,6 +3,7 @@
    font-size: 50px;
    font-weight: bold;
    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   
  
 }
 body{
@@ -11,14 +12,5 @@ body{
     margin: 0;
     height: 100vh;          
 
-}
-
-#dropzone1{
-    width: 150px;
-    height: 150px;
-    background: black;
-    top: 100px;
-    left: 0;
-    position: absolute;
 }
 
