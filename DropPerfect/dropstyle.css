@@ -1,8 +1,9 @@
-#box{
-    width: 100px;
-    height: 25px;
-    position: relative;
-   
+.box{
+   text-align: center;
+   font-size: 50px;
+   font-weight: bold;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+ 
 }
 body{
     background: linear-gradient(180deg, #87CEEB 0%, #E0F6FF 100%);
@@ -11,7 +12,13 @@ body{
     height: 100vh;          
 
 }
-.con2{
-    justify-content: center;
-    display: flex;
+
+#dropzone1{
+    width: 150px;
+    height: 150px;
+    background: black;
+    top: 100px;
+    left: 0;
+    position: absolute;
 }
+
