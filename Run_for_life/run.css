@@ -4,15 +4,18 @@
     box-sizing:border-box;
 }
 
+html,
 body{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    touch-action:none;
     background:#222;
 }
 
 #canvas1{
-    border:3px solid black;
+    display:block;
+    width:100vw;
+    height:100vh;
     background:skyblue;
 }

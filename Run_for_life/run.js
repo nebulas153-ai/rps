@@ -1,8 +1,13 @@
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 
-canvas.width = 800;
-canvas.height = 400;
+function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = Math.min(window.innerHeight, 500);
+}
+
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
 
 
 const playerImage = new Image();
@@ -81,27 +86,26 @@ window.addEventListener('keydown', e => {
     }
 });
 
-canvas.addEventListener('click', () => {
+
+function handleJump() {
 
     if (gameOver) {
         restartGame();
-    } else if (player.grounded) {
+        return;
+    }
+
+    if (player.grounded) {
         player.velocityY = player.jumpForce;
         player.grounded = false;
     }
+}
 
-});
+document.addEventListener('click', handleJump);
 
-canvas.addEventListener('touchstart', () => {
-
-    if (gameOver) {
-        restartGame();
-    } else if (player.grounded) {
-        player.velocityY = player.jumpForce;
-        player.grounded = false;
-    }
-
-});
+document.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    handleJump();
+}, { passive: false });
 
 // ==================== COLLISION ====================
 
@@ -138,12 +142,14 @@ function animate() {
 
         ctx.fillStyle = 'white';
         ctx.font = '60px Arial';
+        ctx.textAlign = 'left';
         ctx.fillText('GAME OVER', 180, 150);
 
         ctx.font = '30px Arial';
         ctx.fillText('Score: ' + score, 330, 210);
 
         ctx.fillText('Click / Tap To Restart', 220, 270);
+       
 
         return;
     }
