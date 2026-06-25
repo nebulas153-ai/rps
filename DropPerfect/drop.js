@@ -1,3 +1,5 @@
+const BLOCK_SIZE = Math.min(window.innerWidth * 0.18, 150);
+
 function createBlock() {
     const block = document.createElement("div");
 
@@ -7,8 +9,8 @@ function createBlock() {
     ];
 
     block.style.position = "absolute";
-    block.style.width = "150px";
-    block.style.height = "150px";
+    block.style.width = BLOCK_SIZE + "px";
+    block.style.height = BLOCK_SIZE + "px";
     block.style.background =
         colors[Math.floor(Math.random() * colors.length)];
     block.style.border = "2px solid black";
@@ -31,24 +33,31 @@ const scoreText = document.createElement("h2");
 scoreText.style.position = "fixed";
 scoreText.style.top = "10px";
 scoreText.style.left = "10px";
-document.body.appendChild(scoreText);
+scoreText.style.margin = "0";
+scoreText.style.zIndex = "999";
 
 const levelText = document.createElement("h2");
 levelText.style.position = "fixed";
 levelText.style.top = "40px";
 levelText.style.left = "10px";
-document.body.appendChild(levelText);
+levelText.style.margin = "0";
+levelText.style.zIndex = "999";
 
 const highText = document.createElement("h2");
 highText.style.position = "fixed";
 highText.style.top = "70px";
 highText.style.left = "10px";
+highText.style.margin = "0";
+highText.style.zIndex = "999";
+
+document.body.appendChild(scoreText);
+document.body.appendChild(levelText);
 document.body.appendChild(highText);
 
 function updateUI() {
-    scoreText.innerText = "Score: " + score;
-    levelText.innerText = "Level: " + level;
-    highText.innerText = "High Score: " + highScore;
+    scoreText.innerText = `Score: ${score}`;
+    levelText.innerText = `Level: ${level}`;
+    highText.innerText = `High Score: ${highScore}`;
 }
 
 function saveHighScore() {
@@ -63,7 +72,7 @@ updateUI();
 
 let currentBlock = createBlock();
 
-let x = (500 + (window.innerWidth - 300)) / 2;
+let x = window.innerWidth / 2 - BLOCK_SIZE / 2;
 let h = 100;
 
 let speed = moveSpeed;
@@ -74,12 +83,15 @@ let falling = false;
 currentBlock.style.left = x + "px";
 currentBlock.style.top = h + "px";
 
-document.addEventListener("click", function () {
+function dropBlock() {
     if (!falling) {
         speed = 0;
         falling = true;
     }
-});
+}
+
+document.addEventListener("click", dropBlock);
+document.addEventListener("touchstart", dropBlock);
 
 function moveCamera(amount) {
 
@@ -104,19 +116,7 @@ function gameOver() {
     alert(
         "GAME OVER\n\n" +
         "Score: " + score + "\n" +
-        "High Score: " + highScore
-    );
-
-    location.reload();
-}
-
-function winGame() {
-
-    saveHighScore();
-
-    alert(
-        "YOU WIN!\n\n" +
-        "Score: " + score + "\n" +
+        "Level: " + level + "\n" +
         "High Score: " + highScore
     );
 
@@ -130,7 +130,7 @@ function newBlock() {
 
     currentBlock = createBlock();
 
-    x = (500 + (window.innerWidth - 300)) / 2;
+    x = window.innerWidth / 2 - BLOCK_SIZE / 2;
     h = 100;
 
     speed = moveSpeed;
@@ -150,8 +150,7 @@ function animate() {
 
         x += speed;
 
-        // Left = 500px, Right = 300px
-        if (x >= window.innerWidth - 300 || x <= 500) {
+        if (x >= window.innerWidth - BLOCK_SIZE || x <= 0) {
             speed = -speed;
         }
 
@@ -166,28 +165,26 @@ function animate() {
         for (let b of blocks) {
 
             let overlapAmount =
-                Math.min(x + 150, b.x + 150) -
+                Math.min(x + BLOCK_SIZE, b.x + BLOCK_SIZE) -
                 Math.max(x, b.x);
 
             let touchTop =
-                h + 150 >= b.y &&
-                h + 150 <= b.y + verspeed;
+                h + BLOCK_SIZE >= b.y &&
+                h + BLOCK_SIZE <= b.y + verspeed;
 
             if (touchTop) {
 
-                // Lose if overlap too small
-                if (overlapAmount < 30) {
+                if (overlapAmount < BLOCK_SIZE * 0.2) {
                     gameOver();
                     return;
                 }
 
-                let finalY = b.y - 150;
+                let finalY = b.y - BLOCK_SIZE;
 
                 currentBlock.style.top = finalY + "px";
 
                 score++;
 
-                // Perfect bonus
                 if (Math.abs(x - b.x) < 10) {
                     score += 5;
                 }
@@ -201,15 +198,8 @@ function animate() {
 
                 updateUI();
 
-                // Win at 50 score
-                if (score >= 50) {
-                    winGame();
-                    return;
-                }
-
-                // Camera follow
                 if (finalY < 300) {
-                    moveCamera(150);
+                    moveCamera(BLOCK_SIZE);
                 }
 
                 newBlock();
@@ -219,10 +209,9 @@ function animate() {
             }
         }
 
-        // Ground collision
-        if (h >= window.innerHeight - 150) {
+        if (h >= window.innerHeight - BLOCK_SIZE) {
 
-            let groundY = window.innerHeight - 150;
+            let groundY = window.innerHeight - BLOCK_SIZE;
 
             currentBlock.style.top = groundY + "px";
 
@@ -243,5 +232,14 @@ function animate() {
 
     requestAnimationFrame(animate);
 }
+
+document.body.style.margin = "0";
+document.body.style.overflow = "hidden";
+document.body.style.touchAction = "manipulation";
+document.body.style.userSelect = "none";
+
+window.addEventListener("resize", () => {
+    location.reload();
+});
 
 animate();
