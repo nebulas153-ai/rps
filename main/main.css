@@ -12,8 +12,11 @@ body{
     gap: 20px;
     justify-content: center;
     margin-top: 50px;
-    background-color: #ff2121;
+    background: linear-gradient(to right, #ff0000, #0000ff);
+    width: 1000px;
+    height: 250px;
     font-size: 50px;
+    margin-left: 175px;
 }
 .p1{
     color: #ffffff;
@@ -25,29 +28,22 @@ body{
     font-size: 50px;
 }
 .l1{
-    color: #ffffff;
+    color: #000000;
     font-size: 20px;
     font-weight: 500;
     align-items: center;
     text-align: center;
-    font-family: 'Poppins', sans-serif;
-    font-size: 50px;
 }
 .l2{
-    color: #ffffff;
+    color: #000000;
     font-size: 20px;
     font-weight: 500;
     align-items: center;
     text-align: center;
-    font-family: 'Poppins', sans-serif;
-    font-size: 50px;
+    margin-top: 20px;
 }
-.l3{
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: 500;
-    align-items: center;
-    text-align: center;
-    font-family: 'Poppins', sans-serif;
-    font-size: 50px;
+.h1{
+    width: 400px;
+    height: 100px;
+    color: #000000;
 }
